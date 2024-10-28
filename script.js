@@ -1,28 +1,49 @@
-let round = document.querySelector(".round");
-let btn = document.querySelectorAll("button");
-let shape = document.querySelector("#square");
 
-btn[0].addEventListener("click", changeColor);
+const circularShape = document.querySelector(".circle");
+const buttons = document.querySelectorAll("button");
+const shapeElement = document.querySelector(".square"); 
 
-function genarateColor(){
-    let color = Math.floor(Math.random() * 255);
-    return color;
+
+buttons[0].addEventListener("click", updateColor);
+
+
+function generateRandomColorComponent() {
+    return Math.floor(Math.random() * 256); 
 }
 
-function changeColor(){
-    let newColor = `rgb(${genarateColor()}, ${genarateColor()}, ${genarateColor()})`;
-    round.style.backgroundColor = newColor;
+
+function updateColor() {
+    const randomColor = `rgb(${generateRandomColorComponent()}, ${generateRandomColorComponent()}, ${generateRandomColorComponent()})`;
+    circularShape.style.backgroundColor = randomColor;
 }
 
-btn[1].addEventListener("click", changeShape);
-let arr=["square", "round", "diamond", "triangle", "arrow", "frame", "star","cross", "left-point", "right-point", "parallal", "cheg"];
 
-function randomShape(){
-    let idx = Math.floor(Math.random() * arr.length);
-    return arr[idx];
+buttons[1].addEventListener("click", updateShape);
+
+
+const shapeClasses = [
+    "square",
+    "rounded", 
+    "diamond",
+    "triangle",
+    "frame",
+    "arrow",
+    "star",
+    "cross",
+    "cheg",
+    "left-point",
+    "parallelogram", 
+    "right-point",
+];
+
+
+function getRandomShapeClass() {
+    const randomIndex = Math.floor(Math.random() * shapeClasses.length);
+    return shapeClasses[randomIndex];
 }
 
-function changeShape(){
-    let idname = randomShape();
-    shape.id = idname;
+
+function updateShape() {
+    const newShapeClass = getRandomShapeClass();
+    shapeElement.className = newShapeClass; 
 }
